@@ -312,18 +312,17 @@ module.exports = function (grunt) {
         },
         concurrent: {
             server: [
-                'createDefaultTemplate',
                 'jst',
+                'less:server',
                 'copy:styles'
             ],
             test: [
-                'createDefaultTemplate',
                 'jst',
                 'copy:styles'
             ],
             dist: [
-                'createDefaultTemplate',
                 'jst',
+                'less:dist',
                 'copy:styles',
                 'imagemin',
                 'svgmin',
@@ -343,7 +342,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            'less:server',
+            'createDefaultTemplate',
             'concurrent:server',
             'autoprefixer',
             'connect:livereload',
@@ -353,6 +352,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', [
         'clean:server',
+        'createDefaultTemplate',
         'concurrent:test',
         'autoprefixer',
         'connect:test',
@@ -362,7 +362,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'useminPrepare',
-        'less:dist',
+        'createDefaultTemplate',
         'concurrent:dist',
         'requirejs',
         'autoprefixer',
