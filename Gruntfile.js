@@ -20,6 +20,10 @@ module.exports = function (grunt) {
             dist: 'dist'
         },
         watch: {
+            less: {
+                files: ['<%= yeoman.app %>/styles/{,*/}/*.less'],
+                tasks: ['less:server']
+            },
             styles: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
                 tasks: ['copy:styles', 'autoprefixer']
@@ -105,6 +109,33 @@ module.exports = function (grunt) {
                     run: true,
                     urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
                 }
+            }
+        },
+        less: {
+            options: {
+                paths: [
+                    '<%= yeoman.app %>/bower_components',
+                    '<%= yeoman.app %>/styles'
+                ],
+                //dumpLineNumbers: true
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/styles/',
+                    src: ['{,*/}*.less'],
+                    dest: '.tmp/styles/',
+                    ext: '.css',
+                }],
+            },
+            server: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>/styles/',
+                    src: ['{,*/}*.less'],
+                    dest: '.tmp/styles/',
+                    ext: '.css',
+                }],
             }
         },
         autoprefixer: {
@@ -312,6 +343,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'less:server',
             'concurrent:server',
             'autoprefixer',
             'connect:livereload',
@@ -330,8 +362,9 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'useminPrepare',
-        'requirejs',
+        'less:dist',
         'concurrent:dist',
+        'requirejs',
         'autoprefixer',
         'concat',
         'cssmin',

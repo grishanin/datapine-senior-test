@@ -1,0 +1,8 @@
+<div class="chart-thumbnail <%= thumb ? 'has-thumbnail' : 'fadein' %>">
+    <p class="chart-thumbnail__title"><%= thumb ? name : 'Loading...' %></p>
+    <% if (thumb) { %>
+        <a href="/charts/<%= id %>">
+            <img class="chart-thumbnail__thumb" src="<%= thumb %>" />
+        </a>
+    <% } %>
+</div>
