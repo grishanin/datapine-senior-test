@@ -29,7 +29,7 @@
     "load-grunt-tasks": "~0.1.0",
     "time-grunt": "~0.1.1"
   },
-  "author": "Evgeny Grishanin <evgrishanin@gmail.com> (http://github.com/datapine-senior-test)",
+  "author": "Evgeny Grishanin <evgrishanin@gmail.com> (http://github.com/grishanin)",
   "engines": {
     "node": ">=0.8.0"
   }

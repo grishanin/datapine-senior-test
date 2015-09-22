@@ -22,7 +22,6 @@
   "globals": {
       "define": false,
       "Backbone": false,
-      "Handlebars": false,
       "_": false
   }
 }
